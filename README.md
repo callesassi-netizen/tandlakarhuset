@@ -9,6 +9,22 @@ stället för att kämpas fram i Wix redigerare.
 
 ---
 
+## Var sajten ligger
+
+| | |
+|---|---|
+| **Granskningsadress** | https://tandlakarhuset.blomstrande.net |
+| Netlify-adress | https://tandlakarhuset.netlify.app |
+| Repo | https://github.com/callesassi-netizen/tandlakarhuset |
+| Netlify-projekt | `tandlakarhuset`, teamet Blomstrande Digitalt Innehåll |
+
+Netlify bygger om automatiskt vid varje push till `main`. Inget byggkommando
+körs, hela mappen publiceras som den är (`netlify.toml`).
+
+**Granskningsadressen är satt till `noindex`** i `netlify.toml`, så Google inte
+indexerar den och låter den konkurrera med kundens riktiga sajt. Den raden ska
+bort vid skarp lansering, tillsammans med domänbytet nedan.
+
 ## Sidor
 
 | Fil | Sida | URL i Wix idag |
@@ -187,7 +203,8 @@ i `kontakt.html`). Det håller både laddtiden och kakorna nere.
 
 1. **Bekräfta med kliniken** vilket team som har vilka öppettider. De två
    uppsättningarna är härledda ur ordningen på den gamla sajten.
-2. **Domän och webbhotell.** Byt adress på de ställen som listas ovan.
+2. **Domän.** Byt adress i `sitemap.xml`, i `<link rel="canonical">` och i
+   `og:`-taggarna, och ta bort `X-Robots-Tag` ur `netlify.toml`.
 3. **Loggan i vektor** (AI/EPS/PDF) om kliniken har den. Nuvarande SVG är
    vektoriserad ur en 361 × 81 px PNG; texten är perfekt, men byggnadsmärket
    håller bara till ungefär 2–3× sin storlek.
