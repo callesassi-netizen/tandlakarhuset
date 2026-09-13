@@ -403,10 +403,12 @@ br.d { display: inline; }
 .mobilmeny.oppen { display: block; }
 .mobilmeny nav a {
   display: block;
-  padding: 18px 0;
+  /* 14 + 25 + 14 ≈ 53 px träffyta: bekvämt för tummen utan att länkarna
+     tar över hela skärmen */
+  padding: 14px 0;
   border-bottom: 1px solid var(--linje-svag);
   font-family: var(--serif);
-  font-size: 28px;
+  font-size: 21px;
   color: var(--text);
 }
 .mobilmeny nav a[aria-current="page"] { color: var(--teal-djup); }
