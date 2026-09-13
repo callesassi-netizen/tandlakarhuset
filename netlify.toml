@@ -25,6 +25,10 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
+    # TA BORT DEN HÄR RADEN VID SKARP LANSERING.
+    # tandlakarhuset.blomstrande.net är en granskningsadress. Utan noindex
+    # kan Google indexera den och låta den konkurrera med kundens riktiga sajt.
+    X-Robots-Tag = "noindex, nofollow"
 
 # Snygga adresser: /priser i stället för /priser.html
 [[redirects]]
