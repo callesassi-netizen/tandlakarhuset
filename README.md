@@ -152,6 +152,18 @@ formuläret. Den bör stå kvar.
 Google Maps laddas först när besökaren scrollat fram kartan (`data-karta` i
 `kontakt.html`). Det håller både laddtiden och kakorna nere.
 
+## Cache
+
+Bilderna cachas ett år: deras filnamn innehåller bredden (`hero-1280.webp`) och
+ändras aldrig i innehåll. CSS och JS har däremot fasta namn, så de cachas inte
+alls utan revalideras mot servern. Det kostar en liten villkorlig förfrågan som
+svarar 304 när inget ändrats, och gör att en ny design slår igenom direkt i
+stället för att besökare sitter kvar på en gammal version.
+
+Länkarna bär ändå `?v=` som extra säkerhet. **Höj siffran i alla HTML-filer när
+du ändrar `style.css` eller `site.js`** om du vill vara helt säker på att
+besökare med gamla kopior får den nya.
+
 ## Köra lokalt
 
 ```bash
