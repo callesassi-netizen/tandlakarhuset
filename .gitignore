@@ -1,0 +1,7 @@
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Netlify
+.netlify/

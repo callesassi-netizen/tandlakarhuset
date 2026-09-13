@@ -1,0 +1,58 @@
+# Statisk sajt: inget bygge, hela mappen publiceras som den är.
+[build]
+  publish = "."
+  command = ""
+
+# Bilderna har versionerade filnamn (namn-bredd.webp) och kan cachas länge.
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+
+# Snygga adresser: /priser i stället för /priser.html
+[[redirects]]
+  from = "/mottagningen"
+  to = "/mottagningen.html"
+  status = 200
+
+[[redirects]]
+  from = "/tandvard"
+  to = "/tandvard.html"
+  status = 200
+
+[[redirects]]
+  from = "/barn-och-ungdom"
+  to = "/barn-och-ungdom.html"
+  status = 200
+
+[[redirects]]
+  from = "/tandhygienist"
+  to = "/tandhygienist.html"
+  status = 200
+
+[[redirects]]
+  from = "/priser"
+  to = "/priser.html"
+  status = 200
+
+[[redirects]]
+  from = "/kontakt"
+  to = "/kontakt.html"
+  status = 200
