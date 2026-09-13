@@ -164,13 +164,21 @@ Länkarna bär ändå `?v=` som extra säkerhet. **Höj siffran i alla HTML-file
 du ändrar `style.css` eller `site.js`** om du vill vara helt säker på att
 besökare med gamla kopior får den nya.
 
+## Adresser
+
+Sidorna nås utan filändelse: `/priser`, inte `/priser.html`. Netlify serverar
+rätt fil, och `.html`-varianten pekar vidare med 301 så varje sida bara har en
+adress. Canonical och `sitemap.xml` använder samma form.
+
 ## Köra lokalt
 
 ```bash
-python -m http.server 5180
+python serve.py
 ```
 
-Öppna sedan `http://localhost:5180`. Ingen installation, inget byggsteg.
+Öppna sedan `http://localhost:5180`. `serve.py` gör samma sak som Netlify med
+adresserna, så länkarna fungerar likadant lokalt som i produktion. Ingen
+installation, inget byggsteg, bara Python.
 
 ## Publicering
 

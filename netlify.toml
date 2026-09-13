@@ -33,7 +33,44 @@
     # kan Google indexera den och låta den konkurrera med kundens riktiga sajt.
     X-Robots-Tag = "noindex, nofollow"
 
-# Snygga adresser: /priser i stället för /priser.html
+# Varje sida ska ha EN adress. .html-varianten pekar vidare med 301, så att
+# gamla länkar och direktnavigering landar på den rena adressen.
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/mottagningen.html"
+  to = "/mottagningen"
+  status = 301
+
+[[redirects]]
+  from = "/tandvard.html"
+  to = "/tandvard"
+  status = 301
+
+[[redirects]]
+  from = "/barn-och-ungdom.html"
+  to = "/barn-och-ungdom"
+  status = 301
+
+[[redirects]]
+  from = "/tandhygienist.html"
+  to = "/tandhygienist"
+  status = 301
+
+[[redirects]]
+  from = "/priser.html"
+  to = "/priser"
+  status = 301
+
+[[redirects]]
+  from = "/kontakt.html"
+  to = "/kontakt"
+  status = 301
+
+# Den rena adressen serverar filen utan att adressfältet ändras
 [[redirects]]
   from = "/mottagningen"
   to = "/mottagningen.html"

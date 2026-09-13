@@ -299,9 +299,12 @@ br.d { display: inline; }
 .tel:hover { background: var(--teal-djup); border-color: var(--teal-djup); }
 
 
-@media (max-width: 520px) {
+@media (max-width: 620px) {
   .tel-rad { gap: 10px; }
-  .tel { flex: 1 1 100%; padding: 14px 22px; }
+  /* Lägre, och inte fullbredd: knapparna behåller sin minsta bredd och
+     radbryter när de inte får plats, i stället för att bli två stora block. */
+  .tel { padding: 11px 20px; gap: 1px; }
+  .tel span:last-child { font-size: 16px; }
 }
 
 /* --- 7. Topbar ---------------------------------------------------------- */
@@ -420,13 +423,13 @@ br.d { display: inline; }
 .mobilmeny__tel .tel {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding: 15px 24px;
+  gap: 1px;
+  padding: 11px 20px;
   font-family: var(--sans);
   border-color: var(--teal);
 }
 .mobilmeny__tel .tel span:first-child { font-size: 10px; }
-.mobilmeny__tel .tel span:last-child { font-size: 19px; }
+.mobilmeny__tel .tel span:last-child { font-size: 17px; }
 
 body.meny-oppen { overflow: hidden; }
 
