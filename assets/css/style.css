@@ -273,14 +273,20 @@ br.d { display: inline; }
 }
 .knapp--linje:hover { background: var(--teal-djup); color: var(--vit); }
 
-/* Telefonkort, hero och avslutsband */
+/* Telefonkort, hero och avslutsband.
+   Båda teamen har samma knapp med flit: en fylld och en i kontur skulle
+   läsa som att det ena teamet är förstahandsvalet. */
 .tel-rad { display: flex; flex-wrap: wrap; gap: 14px; }
 
 .tel {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 3px;
   padding: 15px 28px;
+  /* samma minsta bredd, annars blir knapparna olika stora bara för att
+     telefonnumren är olika långa */
+  min-width: 11.5rem;
   background: var(--teal);
   border: 1px solid var(--teal);
   transition: background var(--snabb), border-color var(--snabb);
@@ -292,9 +298,6 @@ br.d { display: inline; }
 .tel span:last-child { font-size: 17px; font-weight: 600; color: var(--vit); }
 .tel:hover { background: var(--teal-djup); border-color: var(--teal-djup); }
 
-.tel--linje { background: transparent; border-color: rgba(255, 255, 255, 0.45); }
-.tel--linje span:first-child { color: rgba(255, 255, 255, 0.66); }
-.tel--linje:hover { background: rgba(255, 255, 255, 0.10); border-color: rgba(255, 255, 255, 0.7); }
 
 @media (max-width: 520px) {
   .tel-rad { gap: 10px; }
@@ -422,11 +425,6 @@ br.d { display: inline; }
 }
 .mobilmeny__tel .tel span:first-child { font-size: 10px; }
 .mobilmeny__tel .tel span:last-child { font-size: 19px; }
-.mobilmeny__tel .tel--linje {
-  background: transparent; border-color: var(--linje);
-}
-.mobilmeny__tel .tel--linje span:first-child { color: var(--text-dov); }
-.mobilmeny__tel .tel--linje span:last-child { color: var(--teal-djup); }
 
 body.meny-oppen { overflow: hidden; }
 
@@ -518,17 +516,19 @@ body.meny-oppen { overflow: hidden; }
 }
 .trust__post span { font-size: 13px; color: var(--text-dov); line-height: 1.5; }
 
+/* Två och två hela vägen ner: fyra punkter på rad blir en lång kolumn i
+   mobil, och de hör ihop parvis bättre än de gör var för sig. */
 @media (max-width: 860px) {
   .trust__rutnat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .trust__post { padding-inline: 0; }
-  .trust__post:nth-child(even) { padding-left: clamp(18px, 5vw, 42px); }
+  .trust__post:nth-child(even) { padding-left: clamp(16px, 5vw, 42px); }
   .trust__post:nth-child(odd)  { border-left: 0; }
   .trust__post:nth-child(n+3)  { border-top: 1px solid var(--linje-svag); }
 }
-@media (max-width: 460px) {
-  .trust__rutnat { grid-template-columns: minmax(0, 1fr); }
-  .trust__post { padding-left: 0 !important; border-left: 0; }
-  .trust__post + .trust__post { border-top: 1px solid var(--linje-svag); }
+@media (max-width: 480px) {
+  .trust__post { padding-block: 22px; gap: 5px; }
+  .trust__post b { font-size: 1.0625rem; line-height: 1.2; }
+  .trust__post span { font-size: 12px; }
 }
 
 /* --- 10. Bildkomponenter ------------------------------------------------ */
