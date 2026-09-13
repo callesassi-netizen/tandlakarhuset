@@ -39,36 +39,43 @@
   from = "/index.html"
   to = "/"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/mottagningen.html"
   to = "/mottagningen"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/tandvard.html"
   to = "/tandvard"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/barn-och-ungdom.html"
   to = "/barn-och-ungdom"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/tandhygienist.html"
   to = "/tandhygienist"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/priser.html"
   to = "/priser"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/kontakt.html"
   to = "/kontakt"
   status = 301
+  force = true
 
 # Den rena adressen serverar filen utan att adressfältet ändras
 [[redirects]]
