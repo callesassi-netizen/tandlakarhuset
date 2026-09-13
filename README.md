@@ -1,53 +1,52 @@
-# Tandläkarhuset Östersund: hårdkodad webbplats
+# Tandläkarhuset Östersund
 
-Statisk sajt (HTML, CSS, en liten JS-fil). Ingen byggkedja, inget ramverk,
-inga beroenden. Ladda upp mappen som den är på vilket webbhotell som helst.
+Webbplats för en tandläkarmottagning på Kyrkgatan 60 i Östersund. Sju sidor som
+berättar vem kliniken är, vad den gör och hur man får tag på den.
 
-Ersätter Wix-bygget (`callesassi.wixstudio.com/my-site-1`). Samma innehåll,
-samma bilder, samma design, men mobilanpassningen är skriven för hand i
-stället för att kämpas fram i Wix redigerare.
+**🔗 [tandlakarhuset.blomstrande.net](https://tandlakarhuset.blomstrande.net)**
 
 ---
 
-## Var sajten ligger
+## Vad det är
 
-| | |
-|---|---|
-| **Granskningsadress** | https://tandlakarhuset.blomstrande.net |
-| Netlify-adress | https://tandlakarhuset.netlify.app |
-| Repo | https://github.com/callesassi-netizen/tandlakarhuset |
-| Netlify-projekt | `tandlakarhuset`, teamet Blomstrande Digitalt Innehåll |
+Kliniken drivs som två team under samma tak, Team Charlotte och Team Marielle,
+med egna telefonnummer och egna öppettider. Det präglar hela sajten: det finns
+ingen onlinebokning, och varje sida slutar med båda teamens nummer.
 
-Netlify bygger om automatiskt vid varje push till `main`. Inget byggkommando
-körs, hela mappen publiceras som den är (`netlify.toml`).
+Innehållet följer patientens frågor i tur och ordning: vad ett besök innebär,
+vad det kostar, vad som gäller för barn, vem man möter. Tonen är lugn och
+konkret, och designen är byggd för att bära den: mycket luft, en hög serif i
+rubrikerna och en klinisk tealskala hämtad ur klinikens egen logotyp.
 
-**Granskningsadressen är satt till `noindex`** i `netlify.toml`, så Google inte
-indexerar den och låter den konkurrera med kundens riktiga sajt. Den raden ska
-bort vid skarp lansering, tillsammans med domänbytet nedan.
+Fotona är tagna av Varga Studios på plats i lokalerna.
 
-## Sidor
+## Teknik
 
-| Fil | Sida | URL i Wix idag |
-|---|---|---|
-| `index.html` | Hem | `/` |
-| `mottagningen.html` | Mottagningen och teamet | `/mottagningen` |
-| `tandvard.html` | Tandvård & behandlingar | `/tandvard-behandlingar` |
-| `barn-och-ungdom.html` | Barn & ungdom | `/barn-och-ungdom` |
-| `tandhygienist.html` | Tandhygienist | `/tandhygienisten` |
-| `priser.html` | Priser & ersättningar | `/priser-och-ersattningar` |
-| `kontakt.html` | Kontakt | `/kontakta-oss` |
-| `404.html` | Sidan finns inte | (ny) |
+Ren HTML, CSS och drygt hundra rader JavaScript. **Inget ramverk, ingen
+byggkedja, noll beroenden.** Mappen laddas upp som den är och fungerar på
+vilket webbhotell som helst.
 
-`robots.txt` och `sitemap.xml` ligger i roten. Byt domänen i `sitemap.xml`,
-i `<link rel="canonical">` och i `og:`-taggarna när adressen är bestämd -
-just nu står `https://www.tandlakarhuset.com/` överallt.
-
-## Mappar
+Valet är medvetet. En sajt med sju sidor som ändras ett par gånger om året
+vinner ingenting på ett ramverk, men förlorar en del: någon måste hålla
+beroenden uppdaterade, och om fem år ska den fortfarande gå att öppna och
+redigera utan att först få en verktygskedja att starta.
 
 ```
+index.html               Hem
+mottagningen.html        Om oss och teamet
+tandvard.html            Tandvård och behandlingar
+barn-och-ungdom.html     Barn och ungdom
+tandhygienist.html       Tandhygienist
+priser.html              Priser och ersättningar
+kontakt.html             Kontakt
+404.html
+
 assets/css/style.css     hela designsystemet, en fil
 assets/js/site.js        mobilmeny, scroll-reveal, formulär, lazy karta
-assets/img/              bilder i flera bredder, WebP + JPG, samt logga och ikoner
+assets/img/              bilder i flera bredder (WebP + JPG), logotyp, ikoner
+
+netlify.toml             publicering, cache-headers, snygga URL:er
+robots.txt · sitemap.xml
 ```
 
 ## Designsystemet
@@ -55,162 +54,122 @@ assets/img/              bilder i flera bredder, WebP + JPG, samt logga och ikon
 Färger, typsnitt och mått ligger som CSS-variabler högst upp i `style.css`.
 Ändrar du en variabel slår det igenom på hela sajten.
 
-- **Rubriker:** Instrument Serif (fallback Georgia)
-- **Brödtext:** Manrope (fallback Helvetica/Arial)
+- **Rubriker:** Instrument Serif · **Brödtext:** Manrope
 - **Teal** `#179B93` · **djup teal** `#0F5F5A` · **mörk fond** `#0C302E` ·
   **papper** `#FBFAF7` · **dis** `#EEF4F3`
-- Inga rundade hörn, inga skuggor, hårstreck i stället. Versaletiketter i
-  teal med stor teckenmellanrum. 68 × 1 px streck under rubriker.
+- Inga rundade hörn, inga skuggor. Ytor skiljs åt med hårstreck. Versaletiketter
+  i teal, och ett 68 × 1 px streck under rubriker som står ensamma.
 
-Typografin är fluid (`clamp()`), så den skalar steglöst mellan mobil och
-desktop utan brytpunktshopp.
+Typografin är fluid (`clamp()`), så den skalar steglöst mellan mobil och desktop
+i stället för att hoppa vid brytpunkter.
 
-## Bredderna
+### Fyra bredder, inte en
 
-Sidan har medvetet **fyra bredder** i stället för en. Att allt ligger på samma
-linje gör en sida stel; variationen ger den rytm.
+Om varje sektion börjar på samma x-linje blir sidan stel, hur bra typografin än
+är. Därför växlar fyra bredder genom sidorna:
 
-| Klass | Bredd | Används till |
+| Klass | Bredd | Till vad |
 |---|---|---|
-| `.wrap .wrap--smal` | 1000 px | texttunga partier: historien, "Ditt första besök", "Så fungerar kostnaden" |
-| `.wrap` | 1280 px | standard: sidhuvuden, kontaktkort, mörka band |
-| `.wrap .wrap--bred` | 1560 px | rutnät: korten på startsidan, personrutnätet, behandlingarna, sidfoten |
-| `.halvbleed` | hela skärmen | text på ramens linje, bilden fortsätter ut till kanten |
+| `.wrap--smal` | 1000 px | texttunga partier |
+| `.wrap` | 1280 px | standard |
+| `.wrap--bred` | 1560 px | rutnät och sidfot |
+| `.halvbleed` | hela skärmen | text på ramens linje, bilden ut till kanten |
 
-Halvbleed används bara där sektionen har en **egen bakgrundsfärg** (Implantat på
-Tandvård, Tandlossning på Tandhygienist). Utan den ramen ser bilden ut att rinna
-ut ur sidan i stället för att vara ett medvetet val.
+`.halvbleed` används bara i sektioner med egen bakgrundsfärg. Utan den ramen ser
+bilden ut att rinna ut ur sidan i stället för att vara ett val.
 
-`.halvbleed--hoger` lägger bilden till höger, `.halvbleed--vanster` till
-vänster. Texten står alltid på samma vänsterlinje som en vanlig `.wrap`, vilket
-kräver den exakta fönsterbredden: `site.js` sätter `--vw` till
-`clientWidth`, eftersom `100vw` räknar med scrollbaren och ger några pixlars fel.
+Att texten i en halvbleed ska linjera exakt med en vanlig `.wrap` kräver den
+riktiga fönsterbredden: `100vw` räknar med scrollbaren och ger några pixlars
+fel, så `site.js` sätter `--vw` till `clientWidth`.
 
-I mobil faller alla fyra ihop till en kolumn med samma marginal.
+### Uppslag
 
-## Teamet
-
-`mottagningen.html` visar personalen i två grupper, med teamets tandläkare
-och telefonnummer i rubriken:
-
-- **Team Charlotte:** Lillemor (receptionist & tandsköterska), Sanna,
-  Frida, Anneli, Åsa, Charlotte Lagerfalk Leijon
-- **Team Marielle:** Linda, Jenni, Kerstin, Tanja, Tina (receptionist),
-  Ida, Maria, Marielle Sinclair
-
-Uniformsfärgerna följer indelningen: Team Marielle bär vinrött, Team
-Charlotte grönt och beige.
-
-Ordningen i koden är ordningen på sidan. Ska någon flytta mellan teamen
-räcker det att flytta hennes `<figure>` till den andra gruppen.
-
-## Toppbanden
-
-Bandet överst på undersidorna är bredare än bildernas eget format, så
-`object-fit: cover` klipper i höjd. Var klippet hamnar sätts per sida med
-`--bildlage` på `.toppbild` (`center 22%` när ansiktena sitter högt upp,
-`center` för närbilder utan ansikten). Utan det kapades personalens huvuden på
-Barn & ungdom.
-
-Bilderna är byggda med samma sak i åtanke: croppen i originalfotot lämnar
-tillräckligt med luft ovanför huvudena för att överleva CSS-beskärningen.
-
-## Uppslagen
-
-Sektionerna där en kort rubrik står till vänster om en lång brödtext
-("Ditt första besök", "Vad gör en tandhygienist?", "Mycket händer i ett barns
-liv", "Patientomhändertagande", "Så fungerar kostnaden") använder klassen
-`.uppslag`:
-
-- rubrikspalten är smalare än textspalten, så texten får en läsbar radlängd
-- rubriken avslutas med designsystemets 68 px-streck i stället för att bara ta slut
-- på desktop är rubrikspalten `position: sticky` och följer med medan texten
-  rullar förbi, så spalten aldrig står tom
-- där texten är lång (Barn & ungdom) ligger första stycket som ingress i
-  rubrikspalten, vilket jämnar ut höjderna
-
-I mobil blir det en vanlig kolumn och sticky stängs av.
-
-## Ersättningsrutorna på Priser
-
-De fyra rutorna under "Ersättningar och betalning" länkar vidare. Målen är
-desamma som på gamla tandlakarhuset.com, följda till sin nuvarande adress:
-
-| Ruta | Länk |
-|---|---|
-| Högkostnadsskydd & garantier | 1177, Rättigheter inom tandvård (Jämtland Härjedalen) |
-| Försäkringskassans högkostnadsskydd | forsakringskassan.se, Tandvårdsstöd |
-| Allmänt och särskilt tandvårdsbidrag | socialstyrelsen.se, Tandvård |
-| Tandvårdskonto & Walley faktura | walley.se |
-
-Den sista är ett byte: gamla sajten pekade på lowell.se, som inte längre har
-något om tandvård. Stäm av med kliniken vilken betallösning de använder i dag.
-
-"Om priset" ovanför är ett numrerat rutnät i samma form som "Övriga
-behandlingar" på Tandvård, inte en radlista. Sista cellen (`.lista-atgard`) är
-mörk och länkar till Tandpriskollen, så knappen får en naturlig plats i rutnätet
-i stället för att hänga löst under det. Sidan har också ett eget toppband
-(väntrummet). Utan det var Priser den enda undersidan helt utan bild.
-
-## Mottagningen
-
-De tre textblocken efter personrutnätet har var sin form, så de inte läser som
-tre likadana stycken i rad:
-
-1. **Patientomhändertagande:** text till vänster, bild på instrumenten i
-   sterilen ut mot högerkanten (halvbleed på dis-fond)
-2. **Ägarskap:** rubriken över, texten i två spalter under
-3. **Vår historia:** tidslinje
-
-## Mobil
-
-- Meny under 1040 px blir hamburgare med helskärmsmeny.
-- Radbrytningar som bara ska gälla i desktop skrivs `<br class="d">`
-  **med ett mellanslag före**. I mobil döljs taggen och mellanslaget håller
-  isär orden. (Det var precis det som gick sönder i Wix.)
-- Teamrutnätet går 4 → 3 → 2 kolumner. Två kolumner i mobil i stället för en
-  gör teamsidan hälften så lång.
-- `prefers-reduced-motion` stängs av all rörelse.
+Där en kort rubrik står bredvid en lång brödtext blir spalten annars tom. Klassen
+`.uppslag` gör rubrikspalten smalare, avslutar den med strecket och gör den
+`position: sticky`, så rubriken följer med medan texten rullar förbi.
 
 ## Bilder
 
-Varje bild finns i flera bredder som WebP (modernt) och JPG (fallback),
-kopplade med `srcset`/`sizes`. Webbläsaren hämtar bara den storlek den
-behöver, så en mobil laddar ungefär 150 kB bilder på startsidan.
+Varje bild finns i flera bredder som WebP med JPG som reserv, kopplade med
+`srcset`/`sizes`. Webbläsaren hämtar bara den storlek den behöver, så en mobil
+laddar ungefär 150 kB bilder på startsidan.
 
-Alla bilder är byggda direkt ur Varga Studios originalfiler i full
-upplösning, i samma beskärningar som Wix-sajten använder.
+Bilderna är byggda direkt ur fotografens originalfiler i full upplösning. Två
+saker är värda att veta om man lägger till fler:
 
-**Lägga till en bild:** spara den i `assets/img/` i två eller tre bredder
-(namn-480.webp, namn-960.webp …) och kopiera ett befintligt `<picture>`-block.
+- **Toppbanden beskärs två gånger.** Bandet är bredare än bildens eget format,
+  så `object-fit: cover` klipper i höjd utöver den beskärning bilden redan har.
+  Var klippet hamnar sätts per sida med `--bildlage` på `.toppbild`. Utan det
+  kapas ansikten som sitter högt i bild.
+- **Lägga till en bild:** spara den i `assets/img/` i två eller tre bredder
+  (`namn-480.webp`, `namn-960.webp` …) och kopiera ett befintligt
+  `<picture>`-block.
 
-## Kontaktformuläret
+## Mobil
 
-Sajten är statisk och har ingen server, så formuläret öppnar patientens
-e-postklient med ärendet ifyllt (`site.js`, sist i filen). Ska det skickas
-från servern i stället: byt ut lyssnaren mot en riktig
-`<form action="…" method="post">`.
+Mobilanpassningen är skriven för hand, inte ärvd från ett ramverk.
+
+- Under 1040 px blir menyn en hamburgare med helskärmsmeny.
+- Personrutnätet går 4 → 3 → 2 kolumner. Två kolumner i mobil i stället för en
+  halverar teamsidans längd.
+- Radbrytningar som bara ska gälla i desktop skrivs `<br class="d">` **med ett
+  mellanslag före**. I mobil döljs taggen och mellanslaget håller isär orden.
+- `prefers-reduced-motion` stänger av all rörelse.
+
+## Teamen
+
+`mottagningen.html` visar personalen i två grupper med teamets tandläkare och
+telefonnummer i rubriken. Ordningen i koden är ordningen på sidan. Ska någon
+byta team räcker det att flytta hennes `<figure>` till den andra gruppen.
+
+Båda teamen har genomgående **samma** knapp, i samma färg och med samma minsta
+bredd. En fylld och en i kontur är den vanliga primär/sekundär-konventionen, men
+här hade den sagt att det ena teamet var förstahandsvalet.
+
+## Tillgänglighet
+
+Skip-länk till innehållet, synliga fokusmarkeringar, `aria-current` på aktuell
+sida, alt-texter som beskriver vad bilden visar, och kontraster som håller mot
+både papper och den mörka fonden. Telefonnummer är `tel:`-länkar och e-post
+`mailto:`.
+
+## SEO
+
+Egen `<title>` och beskrivning per sida, canonical, Open Graph, `sitemap.xml`
+och `robots.txt`. Varje sida bär `LocalBusiness`/`Dentist`-schema med adress,
+telefon, öppettider, geoposition och behandlingar.
+
+## Formulär och karta
+
+Sajten är statisk och har ingen server. Kontaktformuläret öppnar därför
+patientens e-postklient med ärendet ifyllt, adresserat till det team man valt.
+Ska det i stället skickas från servern: byt ut lyssnaren sist i `site.js` mot en
+riktig `<form action="…" method="post">`.
 
 En rad under knappen ber patienten att inte skicka hälsouppgifter via
 formuläret. Den bör stå kvar.
 
-## Kartan
+Google Maps laddas först när besökaren scrollat fram kartan (`data-karta` i
+`kontakt.html`). Det håller både laddtiden och kakorna nere.
 
-Google Maps laddas först när besökaren scrollat fram den (`data-karta`
-i `kontakt.html`). Det håller både laddtiden och kakorna nere.
+## Köra lokalt
 
-## Att göra innan publicering
+```bash
+python -m http.server 5180
+```
 
-1. **Bekräfta med kliniken** vilket team som har vilka öppettider. De två
-   uppsättningarna är härledda ur ordningen på den gamla sajten.
-2. **Domän.** Byt adress i `sitemap.xml`, i `<link rel="canonical">` och i
-   `og:`-taggarna, och ta bort `X-Robots-Tag` ur `netlify.toml`.
-3. **Loggan i vektor** (AI/EPS/PDF) om kliniken har den. Nuvarande SVG är
-   vektoriserad ur en 361 × 81 px PNG; texten är perfekt, men byggnadsmärket
-   håller bara till ungefär 2–3× sin storlek.
-4. **Tandvårdskontot.** Rutan "Tandvårdskonto & Walley faktura" pekar på
-   walley.se; gamla sajtens länk gick till lowell.se, som inte längre nämner
-   tandvård. Fråga kliniken vilken lösning som gäller i dag.
+Öppna sedan `http://localhost:5180`. Ingen installation, inget byggsteg.
+
+## Publicering
+
+Ligger på Netlify med deploy från `main`. Inget byggkommando körs, hela mappen
+publiceras som den är. `netlify.toml` sköter cache-headers och snygga adresser
+(`/priser` i stället för `/priser.html`).
+
+Adressen ovan är en granskningsadress och är satt till `noindex` i
+`netlify.toml`, så att den inte indexeras och konkurrerar med klinikens riktiga
+sajt. Den raden tas bort vid skarp lansering, tillsammans med domänbytet i
+`sitemap.xml`, canonical och og-taggarna.
 
 ---
 
