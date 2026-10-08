@@ -962,6 +962,12 @@ a.kort:hover h3 { color: var(--teal-djup); }
   opacity: 0.85;
 }
 
+/* Kontakt, "Mitt i centrala Östersund": stående bild, högerställd i sin spalt */
+.lokal-bild { width: 100%; max-width: 480px; justify-self: end; }
+@media (max-width: 900px) { .lokal-bild { max-width: none; justify-self: stretch; } .lokal-bild img { aspect-ratio: 4 / 3; } }
+/* På mörk fond: ljusare, helt täckande teal så att ramen syns */
+.mork .figur--ram::before { background: linear-gradient(135deg, var(--teal-ljus) 0%, var(--teal) 100%); opacity: 1; }
+
 /* Kontakt: bild och karta sida vid sida, lika höga */
 .bild-karta { align-items: start; }
 .bild-karta__bild img,
