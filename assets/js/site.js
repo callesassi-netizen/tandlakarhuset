@@ -1,4 +1,4 @@
-/* Tandläkarhuset Östersund: mobilmeny, sticky header, scroll-reveal, formulär */
+/* Tandläkarhuset Östersund: mobilmeny, sticky header, scroll-reveal, karta */
 (function () {
   'use strict';
 
@@ -83,30 +83,6 @@
     Array.prototype.forEach.call(element, function (el, i) {
       el.style.transitionDelay = (Math.min(i % 4, 3) * 70) + 'ms';
       obs.observe(el);
-    });
-  }
-
-  /* --- Kontaktformulär --------------------------------------------------
-     Sajten är statisk och har ingen server. Formuläret öppnar därför
-     patientens e-postklient med ärendet ifyllt. Ska det i stället skickas
-     från servern: byt ut lyssnaren mot en riktig <form action="…" method="post">.
-     ------------------------------------------------------------------- */
-  var form = document.getElementById('kontaktformular');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var d = new FormData(form);
-      var team = d.get('team') || 'cll@tandlakarhuset.com';
-      var namn = (d.get('namn') || '').toString().trim();
-      var kropp =
-        'Namn: ' + namn + '\n' +
-        'Telefon: ' + (d.get('telefon') || '') + '\n' +
-        'E-post: ' + (d.get('epost') || '') + '\n\n' +
-        (d.get('arende') || '');
-      window.location.href =
-        'mailto:' + team +
-        '?subject=' + encodeURIComponent('Webbformulär: ' + (namn || 'ny kontakt')) +
-        '&body=' + encodeURIComponent(kropp);
     });
   }
 

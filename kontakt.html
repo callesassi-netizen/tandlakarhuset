@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="assets/css/style.css?v=3">
+<link rel="stylesheet" href="assets/css/style.css?v=4">
 </head>
 <body>
 <a class="skip" href="#innehall">Hoppa till innehållet</a>
@@ -129,52 +129,18 @@
     </div>
   </section>
 
-  <!-- ══ Formulär + karta ═══════════════════════════════════════════════ -->
+  <!-- ══ Bild + karta ═════════════════════════════════════════════════ -->
   <section class="sektion">
-    <div class="wrap split split--jamn">
-      <div class="stack">
-        <h2 class="t-3">Skriv till oss</h2>
-        <p class="brod" style="font-size:16px;line-height:1.72;color:var(--text-tyst)">Vi svarar så snart vi kan. Är ärendet brådskande, ring hellre.</p>
-        <form id="kontaktformular" class="stack" style="--gap:16px" novalidate>
-          <div class="form-rutnat">
-            <div class="falt">
-              <label for="f-namn">Namn</label>
-              <input id="f-namn" name="namn" type="text" autocomplete="name" required>
-            </div>
-            <div class="falt">
-              <label for="f-telefon">Telefon</label>
-              <input id="f-telefon" name="telefon" type="tel" autocomplete="tel">
-            </div>
-          </div>
-          <div class="falt">
-            <label for="f-epost">E-post</label>
-            <input id="f-epost" name="epost" type="email" autocomplete="email" required>
-          </div>
-          <div class="falt">
-            <label for="f-team">Till vilket team?</label>
-            <select id="f-team" name="team" style="height:50px;font-family:var(--sans);font-size:16px;color:var(--text);background:#fff;border:1px solid rgba(22,33,31,.18);padding:0 16px">
-              <option value="cll@tandlakarhuset.com">Team Charlotte</option>
-              <option value="marielle@tandlakarhuset.com">Team Marielle</option>
-            </select>
-          </div>
-          <div class="falt">
-            <label for="f-arende">Ditt ärende</label>
-            <textarea id="f-arende" name="arende" required></textarea>
-          </div>
-          <button class="knapp" type="submit" style="align-self:flex-start">Skicka</button>
-          <p class="form-not">Skicka inga känsliga uppgifter om din hälsa via formuläret, ring oss i stället.</p>
-        </form>
-      </div>
-
-      <div class="stack" style="--gap:20px">
-        <div class="figur figur--kvot" style="--kvot:1.8">
-          <picture>
-          <source type="image/webp" sizes="(max-width: 900px) 100vw, 46vw" srcset="assets/img/fonster-480.webp 480w, assets/img/fonster-760.webp 760w, assets/img/fonster-1000.webp 1000w, assets/img/fonster-1300.webp 1300w">
-          <img src="assets/img/fonster-760.jpg" sizes="(max-width: 900px) 100vw, 46vw"
+    <div class="wrap wrap--bred split split--jamn bild-karta">
+      <div class="figur bild-karta__bild">
+        <picture>
+          <source type="image/webp" sizes="(max-width: 900px) 100vw, 50vw" srcset="assets/img/fonster-480.webp 480w, assets/img/fonster-760.webp 760w, assets/img/fonster-1000.webp 1000w, assets/img/fonster-1300.webp 1300w">
+          <img src="assets/img/fonster-1000.jpg" sizes="(max-width: 900px) 100vw, 50vw"
                srcset="assets/img/fonster-480.jpg 480w, assets/img/fonster-760.jpg 760w, assets/img/fonster-1000.jpg 1000w, assets/img/fonster-1300.jpg 1300w"
                alt="Utsikt från Tandläkarhuset mot Kyrkgatan" width="868" height="660" loading="lazy">
         </picture>
-        </div>
+      </div>
+      <div class="bild-karta__karta">
         <iframe class="karta" data-karta="https://maps.google.com/maps?q=Kyrkgatan%2060%2C%20831%2034%20%C3%96stersund&t=&z=16&ie=UTF8&iwloc=&output=embed" title="Karta över Kyrkgatan 60, Östersund"
                 loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         <a class="pil" href="https://maps.google.com/?q=Kyrkgatan+60,+831+34+Östersund" target="_blank" rel="noopener">Öppna i Google Maps <svg width="22" height="10" viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 5h20M16 1l4 4-4 4"/></svg></a>

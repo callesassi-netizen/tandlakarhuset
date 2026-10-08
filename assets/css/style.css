@@ -948,6 +948,18 @@ a.kort:hover h3 { color: var(--teal-djup); }
   display: block;
 }
 
+/* Kontakt: bild och karta sida vid sida, lika höga */
+.bild-karta { align-items: start; }
+.bild-karta__bild img,
+.bild-karta .karta { height: clamp(300px, 36vw, 560px); }
+.bild-karta__bild img { object-position: center 70%; }
+.bild-karta__karta { display: flex; flex-direction: column; gap: 20px; }
+.bild-karta .karta { flex: none; min-height: 0; }
+@media (max-width: 900px) {
+  .bild-karta__bild img { height: clamp(260px, 62vw, 420px); }
+  .bild-karta .karta { height: 340px; }
+}
+
 /* --- 22. Sidfot --------------------------------------------------------- */
 
 .sidfot {
