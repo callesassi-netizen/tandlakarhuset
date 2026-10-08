@@ -578,9 +578,6 @@ body.meny-oppen { overflow: hidden; }
   object-position: var(--bildlage, center);
 }
 
-/* Högre toppband där motivet har två personer på olika höjd */
-.toppbild--hog img { height: clamp(240px, 42vw, 620px); }
-
 /* --- 11. Kort ----------------------------------------------------------- */
 
 .kort-rutnat {
